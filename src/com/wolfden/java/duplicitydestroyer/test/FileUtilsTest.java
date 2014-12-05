@@ -7,12 +7,12 @@ import java.io.File;
 import org.junit.Before;
 import org.junit.Test;
 
-import com.wolfden.java.duplicitydestroyer.FileUtils;
+import com.wolfden.java.duplicitydestroyer.utils.FileUtils;
 
 /**
  * @author Nish
  * 
- *         Unit tests for the {@link FileUtils} class
+ * Unit tests for the {@link FileUtils} class
  */
 public class FileUtilsTest {
 
@@ -24,37 +24,41 @@ public class FileUtilsTest {
 	}
 
 	@Test
-	public void getFilesFromDir_DoesNotReturnNull() {
+	public void getFilesFromDirDoesNotReturnNull() {
 		assertNotNull(FileUtils.getFilesFromDir(testDirectory));
 	}
 
 	@Test
-	public void getFilesFromDir_ReturnsCorrectNumberOfFiles() {
+	public void getFilesFromDirReturnsCorrectNumberOfFiles() {
+		int correctNumberOfFilesInTestDirectory = 3;
+		int numberOfFilesWithTestExtension = 1;
+		int numberOfFilesWithTextExtension = 2;
+		
 		// Without file extension filter
 		File[] files = FileUtils.getFilesFromDir(testDirectory);
-		assertEquals(3, files.length);
+		assertEquals(correctNumberOfFilesInTestDirectory, files.length);
 
 		// With file extension filter
 		File[] files2 = FileUtils.getFilesFromDir(testDirectory, ".test");
-		assertEquals(1, files2.length);
+		assertEquals(numberOfFilesWithTestExtension, files2.length);
 		
 		// With file extension filter
 		File[] files3 = FileUtils.getFilesFromDir(testDirectory, ".txt");
-		assertEquals(2, files3.length);
+		assertEquals(numberOfFilesWithTextExtension, files3.length);
 
 		// With variable length file extension filters
 		File[] files4 = FileUtils.getFilesFromDir(testDirectory, ".test",
 				".txt");
-		assertEquals(3, files4.length);
+		assertEquals(correctNumberOfFilesInTestDirectory, files4.length);
 	}
 
 	@Test(expected = IllegalArgumentException.class)
-	public void getFilesFromDir_throwsException() {
+	public void getFilesFromDirThrowsException() {
 		FileUtils.getFilesFromDir(testDirectory, "");
 	}
 
 	@Test
-	public void isValidFileExtension() {
+	public void isValidFileExtensionAcceptsCorrectFileExtensions() {
 		boolean result = FileUtils.isValidFileExtension(".mp3");
 		assertEquals(true, result);
 
