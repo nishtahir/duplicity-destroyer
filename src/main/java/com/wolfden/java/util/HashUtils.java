@@ -1,4 +1,4 @@
-package com.wolfden.java.duplicitydestroyer.utils;
+package com.wolfden.java.util;
 
 import java.io.File;
 import java.io.FileInputStream;
@@ -22,8 +22,8 @@ public class HashUtils {
 				digest.update(byteBuffer, 0, bytesRead);
 
 		} catch (IOException | NoSuchAlgorithmException e) {
-			// TODO - alert User of problem
 			e.printStackTrace();
+			return null;
 		}
 
 		return convertByteArrayToHexString(digest.digest());

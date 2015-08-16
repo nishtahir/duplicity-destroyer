@@ -1,39 +1,27 @@
-package com.wolfden.java.duplicitydestroyer.test;
-
-import static org.junit.Assert.*;
+package com.wolfden.java.util;
 
 import java.io.File;
 
-import org.junit.Before;
-import org.junit.Test;
+import com.wolfden.java.AppTest;
 
-import com.wolfden.java.duplicitydestroyer.utils.FileUtils;
+import junit.framework.TestCase;
 
-/**
- * @author Nish
- * 
- * Unit tests for the {@link FileUtils} class
- */
-public class FileUtilsTest {
-
+public class FileUtilsTest extends TestCase {
 	private File testDirectory;
 
-	@Before
 	public void setUp() {
-		testDirectory = new File("TestDirectory");
+		testDirectory = new File(AppTest.TEST_DIRECTORY);
 	}
 
-	@Test
-	public void getFilesFromDirDoesNotReturnNull() {
+	public void testGetFilesFromDirDoesNotReturnNull() {
 		assertNotNull(FileUtils.getFilesFromDir(testDirectory));
 	}
 
-	@Test
-	public void getFilesFromDirReturnsCorrectNumberOfFiles() {
+	public void testGetFilesFromDirReturnsCorrectNumberOfFiles() {
 		int correctNumberOfFilesInTestDirectory = 3;
 		int numberOfFilesWithTestExtension = 1;
 		int numberOfFilesWithTextExtension = 2;
-		
+
 		// Without file extension filter
 		File[] files = FileUtils.getFilesFromDir(testDirectory);
 		assertEquals(correctNumberOfFilesInTestDirectory, files.length);
@@ -41,24 +29,26 @@ public class FileUtilsTest {
 		// With file extension filter
 		File[] files2 = FileUtils.getFilesFromDir(testDirectory, ".test");
 		assertEquals(numberOfFilesWithTestExtension, files2.length);
-		
+
 		// With file extension filter
 		File[] files3 = FileUtils.getFilesFromDir(testDirectory, ".txt");
 		assertEquals(numberOfFilesWithTextExtension, files3.length);
 
 		// With variable length file extension filters
-		File[] files4 = FileUtils.getFilesFromDir(testDirectory, ".test",
-				".txt");
+		File[] files4 = FileUtils.getFilesFromDir(testDirectory, ".test", ".txt");
 		assertEquals(correctNumberOfFilesInTestDirectory, files4.length);
 	}
 
-	@Test(expected = IllegalArgumentException.class)
-	public void getFilesFromDirThrowsException() {
-		FileUtils.getFilesFromDir(testDirectory, "");
+	public void testGetFilesFromDirThrowsException() {
+		try{
+			FileUtils.getFilesFromDir(testDirectory, "");
+			fail("IllegalArgumentException was not thrown");
+		} catch(IllegalArgumentException iae){
+			
+		}
 	}
 
-	@Test
-	public void isValidFileExtensionAcceptsCorrectFileExtensions() {
+	public void testIsValidFileExtensionAcceptsCorrectFileExtensions() {
 		boolean result = FileUtils.isValidFileExtension(".mp3");
 		assertEquals(true, result);
 
@@ -71,5 +61,4 @@ public class FileUtilsTest {
 		result = FileUtils.isValidFileExtension("");
 		assertEquals(false, result);
 	}
-
 }

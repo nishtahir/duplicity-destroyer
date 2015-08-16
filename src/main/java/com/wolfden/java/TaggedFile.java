@@ -1,10 +1,10 @@
-package com.wolfden.java.duplicitydestroyer;
+package com.wolfden.java;
 
 import java.io.File;
 import java.io.IOException;
 import java.security.NoSuchAlgorithmException;
 
-import com.wolfden.java.duplicitydestroyer.utils.HashUtils;
+import com.wolfden.java.util.HashUtils;
 
 public class TaggedFile {
 	private File file;
@@ -30,5 +30,4 @@ public class TaggedFile {
 	public String getHash() throws NoSuchAlgorithmException, IOException{
 		return HashUtils.generateMD5Checksum(file);
 	}
-
 }

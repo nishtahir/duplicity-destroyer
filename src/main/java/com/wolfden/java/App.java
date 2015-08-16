@@ -1,13 +1,11 @@
-package com.wolfden.java.duplicitydestroyer;
+package com.wolfden.java;
 
 import java.io.File;
 import java.util.ArrayList;
-import java.util.HashMap;
 
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.events.SelectionAdapter;
 import org.eclipse.swt.events.SelectionEvent;
-import org.eclipse.swt.graphics.Color;
 import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Button;
@@ -23,36 +21,35 @@ import org.eclipse.swt.widgets.TableColumn;
 import org.eclipse.swt.widgets.TableItem;
 import org.eclipse.swt.widgets.Text;
 
-import com.wolfden.java.duplicitydestroyer.utils.FileUtils;
+import com.wolfden.java.util.FileUtils;
 
-public class DuplicityDestroyerApplication {
-
+/**
+ * 
+ * @author Nish
+ *
+ */
+public class App {
 	protected Shell shell;
 	private Text text;
 	private Table table;
 	private Combo fileFormatsComboBox;
 	private Combo fileExtensionsComboBox;
-	
+
 	ArrayList<TaggedFile> fileList;
-	
-	/**
-	 * Launch the application.
-	 * 
-	 * @param args
-	 */
+
 	public static void main(String[] args) {
 		try {
-			DuplicityDestroyerApplication window = new DuplicityDestroyerApplication();
-			window.open();
+			App window = new App();
+			window.launch();
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 	}
-
+	
 	/**
 	 * Open the window.
 	 */
-	public void open() {
+	public void launch() {
 		Display display = Display.getDefault();
 		createContents();
 		shell.open();
@@ -63,6 +60,7 @@ public class DuplicityDestroyerApplication {
 			}
 		}
 	}
+	
 
 	/**
 	 * Create contents of the window.
@@ -162,6 +160,7 @@ public class DuplicityDestroyerApplication {
 		btnNewButton.setText("Find Duplicates");
 
 	}
+	
 
 	private void updateTable(ArrayList<TaggedFile> taggedFiles) {
 		for (TaggedFile taggedFile : taggedFiles) {

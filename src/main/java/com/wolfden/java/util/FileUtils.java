@@ -1,4 +1,4 @@
-package com.wolfden.java.duplicitydestroyer.utils;
+package com.wolfden.java.util;
 
 import java.io.File;
 import java.io.FileFilter;
@@ -9,7 +9,7 @@ import java.util.Set;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-import com.wolfden.java.duplicitydestroyer.TaggedFile;
+import com.wolfden.java.TaggedFile;
 
 public class FileUtils {
 
