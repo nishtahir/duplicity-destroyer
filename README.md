@@ -2,10 +2,6 @@
 
 SWT based project to help find a remove duplicate files from your file system.
 
-### Why yet another text editor? ###
-
-* It was originally a learning project to work with SWT. I thought open sourcing it was a good idea.
-
 ### Dependencies ###
 
 * JUnit 4.12
